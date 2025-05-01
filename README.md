@@ -15,4 +15,10 @@
 ## コンパイル
 
 - `javac <filename>` でコンパイル
-- `java <output file name>` で実行
+- `java <output file name>` で実行（要Javaの実行確認）
+
+## Javaの実行
+
+checkstyleを使用するためにディレクトリ構成が`src/main/java/`となっている。これにより、`java`配下にディレクトリを切りその配下にjavaファイルを配置すると、パッケージの定義が必須となる（無くても動くがエラーが出る）。そのため、個別にコンパイルしたソースを実行できないため、基本的に以下のようにして直接実行すると良い。
+
+`java <file name>.java`
