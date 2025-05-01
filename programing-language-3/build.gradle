@@ -4,3 +4,35 @@
  * This is a general purpose Gradle build.
  * Learn more about Gradle by exploring our Samples at https://docs.gradle.org/8.14/samples
  */
+
+plugins {
+    id 'java'
+    id 'com.diffplug.spotless' version '7.0.3'  // Spotless
+    id 'checkstyle'   // Checkstyle
+}
+
+repositories {
+    mavenCentral()
+}
+
+spotless {
+    java {
+        googleJavaFormat()  // Google Java Format
+        importOrder() // インポート順の整理
+        removeUnusedImports() // 未使用インポートの削除
+        trimTrailingWhitespace() // 行末の空白削除
+        endWithNewline() // ファイル末尾に改行を追加
+        target 'src/**/*.java'
+    }
+}
+
+checkstyle {
+    toolVersion = '10.23.1'
+    configFile = file('config/checkstyle/checkstyle.xml')
+}
+
+tasks.register('check:all') {
+    group = 'verification'
+    description = 'Run Spotless and Checkstyle'
+    dependsOn 'spotlessApply', 'checkstyleMain'
+}
