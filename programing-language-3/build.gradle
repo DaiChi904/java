@@ -31,7 +31,7 @@ checkstyle {
     configFile = file('config/checkstyle/checkstyle.xml')
 }
 
-tasks.register('check:all') {
+tasks.register('checkAll') {
     group = 'verification'
     description = 'Run Spotless and Checkstyle'
     dependsOn 'spotlessApply', 'checkstyleMain'
